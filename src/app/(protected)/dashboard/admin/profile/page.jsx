@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import { serverFetch, serverFetchById } from '@/lib/actions/common';
 import React from 'react';
 import UpdateForm from '@/components/dashboard/profile/UpdateForm';
+import Image from 'next/image';
 
 const AdminProfile = async () => {
     // 1. Resolve current logged in user session details
@@ -47,7 +48,9 @@ const AdminProfile = async () => {
                     {/* User Identity Info Layout */}
                     <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 w-full md:w-auto">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img 
+                        <Image
+                            height={300} 
+                            width={300} 
                             src={databaseUser?.image || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150"} 
                             alt={databaseUser?.name || "User Avatar"} 
                             className="w-24 h-24 rounded-2xl object-cover border-2 border-zinc-800"

@@ -14,7 +14,8 @@ import {
   LogOut,
   Menu,
   X,
-  Users
+  Users,
+  MessageSquareWarning
 } from 'lucide-react';
 import { logOutUser } from '@/lib/actions/authentication';
 import { authClient } from '@/lib/auth-client';
@@ -32,6 +33,7 @@ export default function DashboardSidebar() {
     { title: 'Admin Dashboard', route: '/dashboard/admin', icon: LayoutGrid },
     { title: 'Manage Users', route: '/dashboard/admin/manage-users', icon: Users },
     { title: 'Manage Lessons', route: '/dashboard/admin/manage-lessons', icon: Books },
+    { title: 'Reported Lessons', route: '/dashboard/admin/reported-lessons', icon: MessageSquareWarning },
     { title: 'Admin Profile', route: '/dashboard/admin/profile', icon: User2 },
   ];
 
