@@ -21,6 +21,7 @@ import CommentForm from '@/components/lessonDetails/CommentForm';
 import CommentsSection from '@/components/lessonDetails/Comments';
 import FavoriteButton from '@/components/lessonDetails/FavoriteButton';
 import LikeButton from '@/components/lessonDetails/LikeButton';
+import ReportButton from '@/components/lessonDetails/ReportButton';
 
 const LessonDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -183,9 +184,7 @@ const LessonDetailsPage = async ({ params }) => {
 
                             </div>
 
-                            <Button size="sm" className="bg-transparent hover:bg-red-500/5 text-zinc-500 hover:text-red-400 border border-transparent hover:border-red-500/10 h-9 rounded-xl text-xs flex items-center gap-2">
-                                <AlertTriangle size={14} /> Report
-                            </Button>
+                            <ReportButton user={user} lesson={lessonData} />
                         </div>
                     </article>
 
