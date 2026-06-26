@@ -5,6 +5,8 @@ import { Button, Select, Label, ListBox, Modal } from "@heroui/react";
 import { serverMutation, updateDataAndRevalidate } from "@/lib/actions/common";
 import { BookOpen, Star, CheckCircle, Trash2, Eye, EyeOff, AlertTriangle } from 'lucide-react';
 
+export const dynamic = "force-dynamic";
+
 export default function ManageLessonsContent({ initialLessons, publicCount, privateCount }) {
     const [lessons, setLessons] = useState(initialLessons);
     const [filterVisibility, setFilterVisibility] = useState("All");
