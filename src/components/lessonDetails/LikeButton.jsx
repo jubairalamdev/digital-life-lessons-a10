@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Button } from '@heroui/react';
+import { Button, toast } from '@heroui/react';
 import { Heart } from 'lucide-react';
 import { serverMutation } from '@/lib/actions/common';
 
@@ -14,7 +14,9 @@ export default function LikeButton({ user, lesson }) {
     const [isLiking, setIsLiking] = useState(false);
 
     const handleLikeToggle = async () => {
-        if (!user?.id || !lesson?._id) return;
+        if (!user?.id || !lesson?._id) {
+            return toast.error("Please Login to like")
+        };
         
         setIsLiking(true);
         
