@@ -5,6 +5,8 @@ import { Table, Button } from "@heroui/react";
 import { serverMutation, updateDataAndRevalidate } from "@/lib/actions/common";
 import { ShieldCheck, User } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default function ManageUsersContent({ initialUsers }) {
     const [users, setUsers] = useState(initialUsers);
     const [updatingId, setUpdatingId] = useState(null);
