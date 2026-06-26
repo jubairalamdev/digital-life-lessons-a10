@@ -1,5 +1,6 @@
 import { serverFetch } from "@/lib/actions/common";
 import ManageLessonsContent from "@/components/dashboard/admin/manage-lessons/ManageLessonsContent";
+export const dynamic = "force-dynamic"; 
 
 export const metadata = {
     title: "Manage Lessons | Admin Dashboard"

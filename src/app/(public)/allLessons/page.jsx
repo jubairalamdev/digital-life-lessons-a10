@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import React from 'react';
 // import LessonCard from '@/components/allLessons/LessonCard';
 import AllLessonCard from '@/components/allLessons/AllLessonsCard';
+export const dynamic = "force-dynamic";
 
 const AllLessonsPage = async () => {
 
