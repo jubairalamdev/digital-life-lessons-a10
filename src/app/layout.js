@@ -1,13 +1,12 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import dns from "node:dns";
+dns.setServers(['8.8.8.8', '8.8.4.4'])
+
+import { Nunito } from "next/font/google";
 import "./globals.css";
+import { Bounce, Slide, ToastContainer } from "react-toastify";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const nunito = Nunito({
+  variable: "--font-nunito",
   subsets: ["latin"],
 });
 
@@ -20,11 +19,26 @@ export default function RootLayout({ children }) {
   return (
     <html
       data-theme="dark"
+      suppressHydrationWarning={true}
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} dark`}
+      className={`${nunito.variable} dark`}
+      style={{ fontFamily: "var(--font-nunito), sans-serif" }}
     >
-      <body className="bg-background text-foreground">
+      <body className="bg-background text-foreground w-full">
         {children}
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick={true}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+          theme="colored"
+          transition={Slide}
+        />
       </body>
     </html>
   );
