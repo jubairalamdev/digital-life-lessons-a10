@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { serverFetchById } from "@/lib/actions/common";
 import DashboardContent from "@/components/dashboard/home/DashboardContent";
+import { redirect } from "next/navigation";
 
 export default async function DashboardPage() {
     const session = await auth.api.getSession({
@@ -19,8 +20,8 @@ export default async function DashboardPage() {
     }
 
     const [lessons, favorites] = await Promise.all([
-        serverFetchById("/api/my/allLessons", user.id),
-        serverFetchById("/api/favorites", user.id),
+        serverFetchById("/api/my/allLessons", user.id, ["lessons"]),
+        serverFetchById("/api/favorites", user.id, ["lessons"]),
     ]);
 
     if (user?.role === "user") {

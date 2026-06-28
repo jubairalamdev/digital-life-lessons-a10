@@ -40,7 +40,7 @@ const LessonDetailsPage = async ({ params }) => {
     // 1. Fetch core lesson document data
     const lessonData = await serverFetchById(
         `/api/lessons`,
-        id
+        id, ["lessons"]
     );
 
     if (!lessonData) {
@@ -60,7 +60,7 @@ const LessonDetailsPage = async ({ params }) => {
     const targetId = lessonData.creatorId;
     const userProfile = await serverFetchById(
         `/api/users`,
-        targetId
+        targetId, ["users"]
     );
 
     // 3. Evaluate conditional authorization locking constraints
@@ -80,9 +80,9 @@ const LessonDetailsPage = async ({ params }) => {
 
 
     // 4. Fetch all public lessons authored by this specific user
-    const rawLessons = await serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/my/lessons/${targetId}`);
+    const rawLessons = await serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/my/lessons/${targetId}`, ["lessons"]);
 
-    const commentsData = await serverFetchById(`/api/comments`, lessonData._id);
+    const commentsData = await serverFetchById(`/api/comments`, lessonData._id, ["comments"]);
 
     // Ensure comments defaults to an empty array if the response is null/undefined
     const comments = Array.isArray(commentsData) ? commentsData : [];

@@ -1,8 +1,14 @@
 "use server"
 
-export const serverFetch = async (apiUrl) => {
+import { revalidatePath, revalidateTag } from 'next/cache';
+
+export const serverFetch = async (apiUrl, tags = []) => {
     try {
-        const res = await fetch(apiUrl)
+        const res = await fetch(apiUrl, {
+            next: {
+                tags
+            }
+        })
         if (!res.ok) {
             // console.log("Error fetching data from server: ", res.statusText)
         }
@@ -14,9 +20,13 @@ export const serverFetch = async (apiUrl) => {
     }
 }
 
-export const serverFetchById = async (apiUrl, id) => {
+export const serverFetchById = async (apiUrl, id, tags = []) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}${apiUrl}/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}${apiUrl}/${id}`, {
+            next: {
+                tags
+            }
+        });
 
         if (!res.ok) {
             console.error("Error fetching data from server: ", res.statusText);
@@ -32,19 +42,19 @@ export const serverFetchById = async (apiUrl, id) => {
 };
 
 export const getUserById = async (userId) => {
-    const res = await serverFetchById(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users`, userId);
+    const res = await serverFetchById(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users`, userId, ["users"]);
     return await res
 }
 
 
 export const getAllLessons = async () => {
-    const res = await serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/lessons`);
+    const res = await serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/lessons`, ["lessons"]);
     // console.log("all lessons =======>" ,res)
     return res;
 }
 
 export const getLessonById = async (lessonId) => {
-    const res = await serverFetchById('/api/lessons', lessonId);
+    const res = await serverFetchById('/api/lessons', lessonId, ["lessons"]);
     return res;
 }
 
@@ -69,12 +79,11 @@ export const serverMutation = async (apiUrl, clientData, options = 'POST') => {
     }
 
     const data = await res.json();
+    ["lessons", "users", "comments", "reports", "favorites"].forEach(t => revalidateTag(t));
     // console.log(data);
     return data;
 };
 
-import { revalidatePath } from 'next/cache';
-
 export async function updateDataAndRevalidate(path) {
-  revalidatePath(path); 
+    revalidatePath(path);
 }

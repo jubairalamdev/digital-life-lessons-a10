@@ -27,7 +27,7 @@ export default function ManageLessonsContent({ initialLessons, publicCount, priv
     const handleToggleFeatured = async (id, currentStatus) => {
         const newState = !currentStatus;
         setLessons(prev => prev.map(l => l._id === id ? { ...l, isFeatured: newState } : l));
-        await serverMutation(`/api/lessons/toggle-featured/${id}`, { isFeatured: newState }, 'PATCH');
+        await serverMutation(`/api/lessons/toggle-featured/${id}`, { isFeatured: newState }, 'PATCH', "/");
         updateDataAndRevalidate("/dashboard/admin/manage-lessons");
     };
 

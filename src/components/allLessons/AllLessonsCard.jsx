@@ -17,7 +17,7 @@ export default async function AllLessonCard({ lesson }) {
   const targetId = lesson?.creatorId;
   const authorData = await serverFetchById(
     `/api/users`,
-    targetId
+    targetId, ["users"]
   );
 
   const toneColors = {

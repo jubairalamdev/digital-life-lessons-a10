@@ -6,7 +6,7 @@ import { Button } from '@heroui/react';
 
 const HomeFeatured = async () => {
   
-    const featuredFreeItems = await serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/lessons/free`)
+    const featuredFreeItems = await serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/lessons/free`, ["lessons"])
     const displayItems = featuredFreeItems?.slice(0,4) || [];
 
   return (

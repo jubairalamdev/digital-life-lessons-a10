@@ -9,12 +9,12 @@ export default async function ReportedLessonsPage() {
     const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5000';
 
     // 1. Fetch aggregated report counts
-    const reportsData = await serverFetch(`${baseUrl}/api/reports/aggregated`) || [];
+    const reportsData = await serverFetch(`${baseUrl}/api/reports/aggregated`, ["reports"]) || [];
 
     // 2. Map through counts to get actual Lesson Titles
     const detailedReports = await Promise.all(
         reportsData.map(async (report) => {
-            const lesson = await serverFetchById('/api/lessons', report._id);
+            const lesson = await serverFetchById('/api/lessons', report._id, ["lessons"]);
             return {
                 lessonId: report._id,
                 title: lesson?.title || "[Lesson Deleted]",

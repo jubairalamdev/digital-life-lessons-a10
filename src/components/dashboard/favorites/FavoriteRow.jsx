@@ -5,7 +5,7 @@ import { serverFetchById } from '@/lib/actions/common';
 import { Eye } from 'lucide-react';
 
 export async function FavoriteRow({ favorite, currentUserId, baseUrl }) {
-    const actualLesson = await serverFetchById(`/api/lessons`, favorite.lessonId);
+    const actualLesson = await serverFetchById(`/api/lessons`, favorite.lessonId, ["lessons"]);
 
     // If the lesson was deleted from the main database, render a fallback row with EXACTLY 5 cells
     if (!actualLesson) {

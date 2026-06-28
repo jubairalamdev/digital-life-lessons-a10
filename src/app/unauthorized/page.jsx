@@ -46,7 +46,7 @@ export default function UnauthorizedPage() {
                             Back to Home
                         </Button>
                     </Link>
-                    <Link href="/login" className="w-full sm:w-auto">
+                    <Link href="/auth/login" className="w-full sm:w-auto">
                         <Button className="w-full bg-red-600 hover:bg-red-500 text-white rounded-xl h-11 font-bold text-sm shadow-lg shadow-red-600/10 transition-all">
                             Go to Login
                         </Button>

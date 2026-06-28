@@ -3,7 +3,7 @@ import { Table } from '@heroui/react';
 import { TrendingRow } from './TrendingRow';
 
 export async function TrendingLessonsSection() {
-    const baseUrl = process.env.NEXT_SERVER_URL || 'http://localhost:5000';
+    const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5000';
     
     let topSavedCounters = [];
     try {

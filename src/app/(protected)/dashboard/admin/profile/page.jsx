@@ -23,10 +23,10 @@ const AdminProfile = async () => {
 
     // 2. Fetch the detailed MongoDB user document using serverFetchById
     const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5000';
-    const databaseUser = await serverFetchById(`/api/users`, sessionUser.id);
+    const databaseUser = await serverFetchById(`/api/users`, sessionUser.id, ["users"]);
 
     // 3. Fetch all public lessons authored by this specific user
-    const rawLessons = await serverFetch(`${baseUrl}/api/my/lessons/${sessionUser.id}`);
+    const rawLessons = await serverFetch(`${baseUrl}/api/my/lessons/${sessionUser.id}`, ["lessons"]);
     
     // Ensure data handles fallbacks safely and matches latest-first order
     const userLessons = Array.isArray(rawLessons) 

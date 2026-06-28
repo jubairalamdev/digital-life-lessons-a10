@@ -5,7 +5,7 @@ import { serverFetchById } from '@/lib/actions/common';
 export async function TrendingRow({ stat, baseUrl }) {
     let actualLesson = {}
     try {
-        actualLesson = await serverFetchById(`/api/lessons`, stat.lessonId);
+        actualLesson = await serverFetchById(`/api/lessons`, stat.lessonId, ["lessons"]);
     }
     catch(error){
         // console.log("Unable to get data: ", error)

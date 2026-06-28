@@ -7,7 +7,7 @@ const HomeContributors = async () => {
 
   try {
     // 1. Fetch your aggregated raw contributor stats
-    const contributionsData = await serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5000'}/api/lessons/top_contributors`);
+    const contributionsData = await serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5000'}/api/lessons/top_contributors`, ["lessons"]);
 
     if (Array.isArray(contributionsData)) {
       // 2. Resolve internal profile fetches concurrently with Promise.all
@@ -18,7 +18,7 @@ const HomeContributors = async () => {
             const targetId = contributor.user_id || contributor._id;
             const userProfile = await serverFetchById(
               `/api/users`, 
-              targetId
+              targetId, ["users"]
             );
 
             return {

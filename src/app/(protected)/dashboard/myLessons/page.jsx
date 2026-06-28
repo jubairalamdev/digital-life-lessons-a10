@@ -25,7 +25,7 @@ export default async function MyLessonsPage() {
         let lessons = [];
         try {
             // console.log("/api/my/allLessons", userId)
-            lessons = await serverFetchById(`/api/my/allLessons`, userId);
+            lessons = await serverFetchById(`/api/my/allLessons`, userId, ["lessons"]);
             console.log(lessons);
         } catch (error) {
             console.error("Failed to fetch user lessons pipeline:", error);

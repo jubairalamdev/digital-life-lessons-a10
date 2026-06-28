@@ -26,7 +26,7 @@ export default function ReportedLessonsContent({ initialReports }) {
         setIsDetailsOpen(true);
 
         const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:5000';
-        const data = await serverFetch(`${baseUrl}/api/reports/lesson/${lessonId}`);
+        const data = await serverFetch(`${baseUrl}/api/reports/lesson/${lessonId}`, ["lessons"]);
         setDetailsList(Array.isArray(data) ? data : []);
         setIsLoadingDetails(false);
     };

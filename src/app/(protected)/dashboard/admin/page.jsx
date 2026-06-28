@@ -8,9 +8,9 @@ export const metadata = {
 export default async function AdminDashboardPage() {
   // 1. Fetch users, lessons, and raw contributor IDs concurrently
   const [usersData, allLessons, contributionsData] = await Promise.all([
-    serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users`),
+    serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users`, ["users"]),
     getAllLessons(),
-    serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/lessons/top_contributors`),
+    serverFetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/lessons/top_contributors`, ["lessons"]),
   ]);
 
   const users = usersData || [];

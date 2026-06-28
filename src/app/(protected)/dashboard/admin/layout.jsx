@@ -8,7 +8,6 @@ const AdminLayout = async ({ children }) => {
     });
     const user = session?.user;
     if (user?.role === "admin") {
-
         return (
             <>
                 {children}
